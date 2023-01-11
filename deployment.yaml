@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nginx-web
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        env:
+          - name: NODE_ENV
+            value: "production"
+      - name: my-rust-app
+        image: my-rust-app-image:latest
+        ports:
+        - containerPort: 8080
+      - name: redis-cache
+        image: redis:latest
+        ports:
+        - containerPort: 6379
