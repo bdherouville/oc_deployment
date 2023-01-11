@@ -1,0 +1,19 @@
+Copy code
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: my-app
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: rust
+    port: 8080
+    targetPort: 8080
+  - name: redis
+    port: 6379
+    targetPort: 6379
+  type: ClusterIP
